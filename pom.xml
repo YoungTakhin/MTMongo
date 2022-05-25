@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.alpactech</groupId>
+  <artifactId>mt-mongo</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>MTMongo</name>
+  <description>
+    MTMongo is an enhanced toolkit base on Spring Data MongoDB for simplify development.
+    This toolkit provides some out-of-the-box CURD methods with RESTful API that can save your development time.
+  </description>
+
+  <properties>
+    <java.version>17</java.version>
+    <springdatamongodb.version>2.7.0</springdatamongodb.version>
+  </properties>
+
+  <developers>
+    <developer>
+      <id>YoungTakhin</id>
+      <name>Dexuan Yang</name>
+      <email>yangdexuan@alpactech.com</email>
+      <timezone>+8</timezone>
+      <roles>
+        <role>Owner</role>
+        <role>Committer</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-mongodb</artifactId>
+      <version>${springdatamongodb.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>16</source>
+          <target>16</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
