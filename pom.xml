@@ -5,17 +5,31 @@
 
   <groupId>com.alpactech</groupId>
   <artifactId>mt-mongo</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>MTMongo</name>
   <description>
-    MTMongo is an enhanced toolkit base on Spring Data MongoDB for simplify development.
-    This toolkit provides some out-of-the-box CURD methods with RESTful API that can save your development time.
+    MTMongo is an enhanced toolkit base on Spring Data MongoDB for simplify development. This toolkit provides some out-of-the-box CURD methods with RESTful API that can save your development time.
   </description>
 
   <properties>
     <java.version>17</java.version>
     <springdatamongodb.version>2.7.0</springdatamongodb.version>
+<!--    <maven.deploy.skip>true</maven.deploy.skip>-->
   </properties>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git@github.com:YoungTakhin/MTMongo.git</connection>
+    <developerConnection>scm:git@github.com:YoungTakhin/MTMongo.git</developerConnection>
+    <url>git@github.com:YoungTakhin/MTMongo</url>
+  </scm>
 
   <developers>
     <developer>
@@ -38,21 +52,94 @@
     </dependency>
   </dependencies>
 
+
+  <distributionManagement>
+    <repository>
+      <id>ossrn</id>
+      <name>Release</name>
+      <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+    <snapshotRepository>
+      <id>ossrn</id>
+      <name>SNAPSHOTS</name>
+      <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <build>
     <plugins>
       <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
         <configuration>
-          <source>16</source>
-          <target>16</target>
+          <encoding>UTF-8</encoding>
+          <source>17</source>
+          <target>17</target>
         </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.1</version>
+        <configuration>
+          <attach>true</attach>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.7.1</version>
+      </plugin>
+      <!-- Javadoc -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+          <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+          <additionalJOptions>
+            <additionalJOption>-Xdoclint:none</additionalJOption>
+          </additionalJOptions>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Gpg Signature -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.0</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+        </configuration>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
-
 </project>
