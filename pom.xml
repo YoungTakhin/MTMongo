@@ -7,13 +7,14 @@
   <artifactId>mt-mongo</artifactId>
   <version>1.0.0</version>
   <name>MTMongo</name>
+  <url>https://github.com/YoungTakhin/MTMongo</url>
   <description>
     MTMongo is an enhanced toolkit base on Spring Data MongoDB for simplify development. This toolkit provides some out-of-the-box CURD methods with RESTful API that can save your development time.
   </description>
 
   <properties>
     <java.version>17</java.version>
-    <springdatamongodb.version>2.7.0</springdatamongodb.version>
+    <springdatamongodb.version>2.7.1</springdatamongodb.version>
 <!--    <maven.deploy.skip>true</maven.deploy.skip>-->
   </properties>
 
@@ -127,9 +128,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-gpg-plugin</artifactId>
         <version>1.0</version>
-        <configuration>
-          <encoding>UTF-8</encoding>
-        </configuration>
         <executions>
           <execution>
             <id>sign-artifacts</id>
