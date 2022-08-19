@@ -1,4 +1,4 @@
-package com.alpactech.mt.mongo.base;
+package com.alpactech.mt.mongo;
 
 import com.mongodb.BasicDBObject;
 import org.bson.Document;
@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Deprecated(since = "1.1.0", forRemoval = true)
 @Manager
 public abstract class BaseMongoManagerImpl<E> implements BaseMongoManager<E> {
     @Autowired

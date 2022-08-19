@@ -5,7 +5,7 @@
 
   <groupId>com.alpactech</groupId>
   <artifactId>mt-mongo</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <name>MTMongo</name>
   <url>https://github.com/YoungTakhin/MTMongo</url>
   <description>
@@ -50,6 +50,12 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-mongodb</artifactId>
       <version>${springdatamongodb.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.24</version>
     </dependency>
   </dependencies>
 

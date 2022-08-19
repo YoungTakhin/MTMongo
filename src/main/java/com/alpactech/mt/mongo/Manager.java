@@ -1,4 +1,4 @@
-package com.alpactech.mt.mongo.base;
+package com.alpactech.mt.mongo;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Component;

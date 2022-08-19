@@ -1,4 +1,4 @@
-package com.alpactech.mt.mongo.base;
+package com.alpactech.mt.mongo;
 
 import com.mongodb.BasicDBObject;
 import org.bson.Document;
@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+@Deprecated(since = "1.1.0")
 @Manager
 public interface BaseMongoManager<E> {
     MongoTemplate getMongoTemplate();
