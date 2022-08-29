@@ -57,4 +57,5 @@ For further reference, please consider the following sections:
 
 - 修复：page方法query参数失效问题
 - 新增：部分exists、count方法
+- 更新：更新Spring Data MongoDB到2.7.2
 - **不兼容更新**：部分page方法更名为pageAll
