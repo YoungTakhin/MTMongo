@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-public interface ReadManager<E> extends PageManager<E> {
+public interface ReadManager<E> extends PageManager<E>, JudgeAndCountManager<E> {
 
     /*
     单查
