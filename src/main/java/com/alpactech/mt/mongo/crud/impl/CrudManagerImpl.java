@@ -15,7 +15,7 @@ import java.util.*;
 
 @Transactional
 @Manager
-public  class CrudManagerImpl<E> extends ViewManagerImpl<E> implements CrudManager<E> {
+public abstract class CrudManagerImpl<E> extends ViewManagerImpl<E> implements CrudManager<E> {
     @Override
     public E save(E entity) {
         return getMongoTemplate().insert(entity);
