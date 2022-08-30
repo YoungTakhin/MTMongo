@@ -59,3 +59,11 @@ For further reference, please consider the following sections:
 - 新增：部分exists、count方法
 - 更新：更新Spring Data MongoDB到2.7.2
 - **不兼容更新**：部分page方法更名为pageAll
+
+
+## v1.1.2
+
+2022-08-31
+
+- 修复：数组操作addToSet方法bug
+- 新增：数组操作push、pushAll、pop方法

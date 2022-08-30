@@ -15,7 +15,7 @@ import java.util.*;
 
 @Transactional
 @Manager
-public abstract class CrudManagerImpl<E> extends ViewManagerImpl<E> implements CrudManager<E> {
+public  class CrudManagerImpl<E> extends ViewManagerImpl<E> implements CrudManager<E> {
     @Override
     public E save(E entity) {
         return getMongoTemplate().insert(entity);
@@ -280,9 +280,8 @@ public abstract class CrudManagerImpl<E> extends ViewManagerImpl<E> implements C
      */
     @Override
     public E addAllToSet(Query query, String field, Object... elements) {
-        Update update = new Update();
-        Arrays.stream(elements).forEach(e -> update.addToSet(field, e));
-        return getMongoTemplate().findAndModify(query, update, FIND_AND_MODIFY_OPTIONS, getEntityClass());
+        return getMongoTemplate().findAndModify(query, new Update().addToSet(field).each(elements),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
     }
 
     /**
@@ -293,9 +292,8 @@ public abstract class CrudManagerImpl<E> extends ViewManagerImpl<E> implements C
      */
     @Override
     public E addAllToSet(Serializable id, String field, Object... elements) {
-        Update update = new Update();
-        Arrays.stream(elements).forEach(e -> update.addToSet(field, e));
-        return getMongoTemplate().findAndModify(getQueryById(id), update, FIND_AND_MODIFY_OPTIONS, getEntityClass());
+        return getMongoTemplate().findAndModify(getQueryById(id), new Update().addToSet(field).each(elements),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
     }
 
     /**
@@ -306,9 +304,8 @@ public abstract class CrudManagerImpl<E> extends ViewManagerImpl<E> implements C
      */
     @Override
     public E addAllToSet(E entity, String field, Object... elements) {
-        Update update = new Update();
-        Arrays.stream(elements).forEach(e -> update.addToSet(field, e));
-        return getMongoTemplate().findAndModify(getQueryByEntity(entity), update, FIND_AND_MODIFY_OPTIONS, getEntityClass());
+        return getMongoTemplate().findAndModify(getQueryByEntity(entity), new Update().addToSet(field).each(elements),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
     }
 
     /**
@@ -319,9 +316,8 @@ public abstract class CrudManagerImpl<E> extends ViewManagerImpl<E> implements C
      */
     @Override
     public E addAllToSet(Query query, String field, Collection<Object> elements) {
-        Update update = new Update();
-        elements.forEach(e -> update.addToSet(field, e));
-        return getMongoTemplate().findAndModify(query, update, FIND_AND_MODIFY_OPTIONS, getEntityClass());
+        return getMongoTemplate().findAndModify(query, new Update().addToSet(field).each(elements),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
     }
 
     /**
@@ -332,9 +328,8 @@ public abstract class CrudManagerImpl<E> extends ViewManagerImpl<E> implements C
      */
     @Override
     public E addAllToSet(Serializable id, String field, Collection<Object> elements) {
-        Update update = new Update();
-        elements.forEach(e -> update.addToSet(field, e));
-        return getMongoTemplate().findAndModify(getQueryById(id), update, FIND_AND_MODIFY_OPTIONS, getEntityClass());
+        return getMongoTemplate().findAndModify(getQueryById(id), new Update().addToSet(field).each(elements),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
     }
 
     /**
@@ -345,9 +340,116 @@ public abstract class CrudManagerImpl<E> extends ViewManagerImpl<E> implements C
      */
     @Override
     public E addAllToSet(E entity, String field, Collection<Object> elements) {
-        Update update = new Update();
-        elements.forEach(e -> update.addToSet(field, e));
-        return getMongoTemplate().findAndModify(getQueryByEntity(entity), update, FIND_AND_MODIFY_OPTIONS, getEntityClass());
+        return getMongoTemplate().findAndModify(getQueryByEntity(entity), new Update().addToSet(field).each(elements),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param field
+     * @param element
+     * @return
+     */
+    @Override
+    public E push(Query query, String field, Object element) {
+        return getMongoTemplate().findAndModify(query, new Update().push(field, element),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param id
+     * @param field
+     * @param element
+     * @return
+     */
+    @Override
+    public E push(Serializable id, String field, Object element) {
+        return getMongoTemplate().findAndModify(getQueryById(id), new Update().push(field, element),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param entity
+     * @param field
+     * @param element
+     * @return
+     */
+    @Override
+    public E push(E entity, String field, Object element) {
+        return getMongoTemplate().findAndModify(getQueryByEntity(entity), new Update().push(field, element),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param field
+     * @param element
+     * @return
+     */
+    @Override
+    public E pushAll(Query query, String field, Object... element) {
+        return getMongoTemplate().findAndModify(query, new Update().push(field).each(element),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param id
+     * @param field
+     * @param element
+     * @return
+     */
+    @Override
+    public E pushAll(Serializable id, String field, Object... element) {
+        return getMongoTemplate().findAndModify(getQueryById(id), new Update().push(field).each(element),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param entity
+     * @param field
+     * @param element
+     * @return
+     */
+    @Override
+    public E pushAll(E entity, String field, Object... element) {
+        return getMongoTemplate().findAndModify(getQueryByEntity(entity), new Update().push(field).each(element),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param field
+     * @param elements
+     * @return
+     */
+    @Override
+    public E pushAll(Query query, String field, Collection<Object> elements) {
+        return getMongoTemplate().findAndModify(query, new Update().push(field).each(elements),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param id
+     * @param field
+     * @param elements
+     * @return
+     */
+    @Override
+    public E pushAll(Serializable id, String field, Collection<Object> elements) {
+        return getMongoTemplate().findAndModify(getQueryById(id), new Update().push(field).each(elements),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param entity
+     * @param field
+     * @param elements
+     * @return
+     */
+    @Override
+    public E pushAll(E entity, String field, Collection<Object> elements) {
+        return getMongoTemplate().findAndModify(getQueryByEntity(entity), new Update().push(field).each(elements),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
     }
 
     /**
@@ -447,6 +549,42 @@ public abstract class CrudManagerImpl<E> extends ViewManagerImpl<E> implements C
     @Override
     public E pullAll(E entity, String field, Collection<Object> elements) {
         return getMongoTemplate().findAndModify(getQueryByEntity(entity), new Update().pullAll(field, elements.toArray()), FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param field
+     * @param position
+     * @return
+     */
+    @Override
+    public E pop(Query query, String field, Update.Position position) {
+        return getMongoTemplate().findAndModify(query, new Update().pop(field, position),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param id
+     * @param field
+     * @param position
+     * @return
+     */
+    @Override
+    public E pop(Serializable id, String field, Update.Position position) {
+        return getMongoTemplate().findAndModify(getQueryById(id), new Update().pop(field, position),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param entity
+     * @param field
+     * @param position
+     * @return
+     */
+    @Override
+    public E pop(E entity, String field, Update.Position position) {
+        return getMongoTemplate().findAndModify(getQueryByEntity(entity), new Update().pop(field, position),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
     }
 
     /**
