@@ -63,7 +63,7 @@ For further reference, please consider the following sections:
 
 ## v1.1.2
 
-2022-08-31
+2022-09-21
 
 - 修复：数组操作addToSet方法bug
 - 新增：数组操作push、pushAll、pop方法
