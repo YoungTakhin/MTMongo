@@ -43,4 +43,20 @@ public interface UpdateManager<E> extends ArrayOperationManager<E> {
     E updateFieldById(Serializable id, String field, Object value);
 
     E updateFieldsById(Serializable id, Map<String, Object> fieldMap);
+
+    E updateFieldByField(String field, Object value, String updateField, Object updateValue);
+
+    E updateFieldByFields(Map<String, Object> fieldMap, String updateField, Object updateValue);
+
+    E updateFieldsByField(String field, Object value, Map<String, Object> updateFieldMap);
+
+    E updateFieldsByFields(Map<String, Object> fieldMap, Map<String, Object> updateFieldMap);
+
+    List<E> updateFieldByFieldBatch(String field, Object value, String updateField, Object updateValue);
+
+    List<E>  updateFieldByFieldsBatch(Map<String, Object> fieldMap, String updateField, Object updateValue);
+
+    List<E>  updateFieldsByFieldBatch(String field, Object value, Map<String, Object> updateFieldMap);
+
+    List<E>  updateFieldsByFieldsBatch(Map<String, Object> fieldMap, Map<String, Object> updateFieldMap);
 }

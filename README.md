@@ -67,3 +67,5 @@ For further reference, please consider the following sections:
 
 - 修复：数组操作addToSet方法bug
 - 新增：数组操作push、pushAll、pop方法
+- 新增：部分方法注释
+- 更新：更新Spring Data MongoDB到2.7.3

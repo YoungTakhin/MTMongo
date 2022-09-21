@@ -12,13 +12,23 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 视图集合管理器实现类
+ *
+ * <p>用于操作视图集合，该类中的方法均为只读操作
+ *
+ * @param <E>
+ * @since 1.1.0
+ */
 @Manager
 public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> implements ViewManager<E> {
     /**
-     * @param query
-     * @param pageNum
-     * @param pageSize
-     * @return
+     * 分页查询
+     * 
+     * @param query 查询对象
+     * @param pageNum 页码
+     * @param pageSize 页大小
+     * @return 分页对象
      */
     @Override
     public Page<E> page(Query query, Integer pageNum, Integer pageSize) {
@@ -28,11 +38,13 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param query
-     * @param pageNum
-     * @param pageSize
-     * @param sortBy
-     * @return
+     * 分页查询
+     * 
+     * @param query 查询对象
+     * @param pageNum 页码
+     * @param pageSize 页大小
+     * @param sortBy 排序字段
+     * @return 分页对象
      */
     @Override
     public Page<E> page(Query query, Integer pageNum, Integer pageSize, String... sortBy) {
@@ -42,11 +54,13 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param pageNum
-     * @param pageSize
-     * @param orderBy
-     * @param sortBy
-     * @return
+     * 分页查询
+     * 
+     * @param pageNum 页码
+     * @param pageSize 页大小
+     * @param orderBy 排序方式
+     * @param sortBy 排序字段
+     * @return 分页对象
      */
     @Override
     public Page<E> pageAll(Integer pageNum, Integer pageSize, Sort.Direction orderBy, String... sortBy) {
@@ -56,12 +70,14 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param query
-     * @param pageNum
-     * @param pageSize
-     * @param orderBy
-     * @param sortBy
-     * @return
+     * 分页查询
+     * 
+     * @param query 查询对象
+     * @param pageNum 页码
+     * @param pageSize 页大小
+     * @param orderBy 排序方式
+     * @param sortBy 排序字段
+     * @return 分页对象
      */
     @Override
     public Page<E> page(Query query, Integer pageNum, Integer pageSize, Sort.Direction orderBy, String... sortBy) {
@@ -71,9 +87,11 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param pageNum
-     * @param pageSize
-     * @return
+     * 分页查询所有文档
+     * 
+     * @param pageNum 页码
+     * @param pageSize 页大小
+     * @return 分页对象
      */
     @Override
     public Page<E> pageAll(Integer pageNum, Integer pageSize) {
@@ -83,10 +101,12 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param pageNum
-     * @param pageSize
-     * @param sortBy
-     * @return
+     * 分页查询所有文档
+     *
+     * @param pageNum 页码
+     * @param pageSize 页大小
+     * @param sortBy 排序字段
+     * @return 分页对象
      */
     @Override
     public Page<E> pageAll(Integer pageNum, Integer pageSize, String... sortBy) {
@@ -96,8 +116,10 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param pageable
-     * @return
+     * 分页查询所有文档
+     *
+     * @param pageable 分页信息
+     * @return 分页对象
      */
     @Override
     public Page<E> pageAll(Pageable pageable) {
@@ -106,11 +128,13 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param field
-     * @param value
-     * @param pageNum
-     * @param pageSize
-     * @return
+     * 根据指定字段分页查询
+     *
+     * @param field 字段名
+     * @param value 字段值
+     * @param pageNum 页码
+     * @param pageSize 页大小
+     * @return 分页对象
      */
     @Override
     public Page<E> pageByField(String field, Object value, Integer pageNum, Integer pageSize) {
@@ -121,12 +145,14 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param field
-     * @param value
-     * @param pageNum
-     * @param pageSize
-     * @param sortBy
-     * @return
+     * 根据指定字段分页查询
+     *
+     * @param field 字段名
+     * @param value 字段值
+     * @param pageNum 页码
+     * @param pageSize 页大小
+     * @param sortBy 排序字段
+     * @return 分页对象
      */
     @Override
     public Page<E> pageByField(String field, Object value, Integer pageNum, Integer pageSize, String... sortBy) {
@@ -137,13 +163,15 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param field
-     * @param value
-     * @param pageNum
-     * @param pageSize
-     * @param orderBy
-     * @param sortBy
-     * @return
+     * 根据指定字段分页查询
+     *
+     * @param field 字段名
+     * @param value 字段值
+     * @param pageNum 页码
+     * @param pageSize 页大小
+     * @param orderBy 排序方式
+     * @param sortBy 排序字段
+     * @return 分页对象
      */
     @Override
     public Page<E> pageByField(String field, Object value, Integer pageNum, Integer pageSize, Sort.Direction orderBy, String... sortBy) {
@@ -154,10 +182,12 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param fieldMap
-     * @param pageNum
-     * @param pageSize
-     * @return
+     * 根据字段映射分页查询
+     *
+     * @param fieldMap 字段映射
+     * @param pageNum 页码
+     * @param pageSize 页大小
+     * @return 分页对象
      */
     @Override
     public Page<E> pageByFields(Map<String, Object> fieldMap, Integer pageNum, Integer pageSize) {
@@ -169,11 +199,13 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param fieldMap
-     * @param pageNum
-     * @param pageSize
-     * @param sortBy
-     * @return
+     * 根据字段映射分页查询
+     *
+     * @param fieldMap 字段映射
+     * @param pageNum 页码
+     * @param pageSize 页大小
+     * @param sortBy 排序字段
+     * @return 分页对象
      */
     @Override
     public Page<E> pageByFields(Map<String, Object> fieldMap, Integer pageNum, Integer pageSize, String... sortBy) {
@@ -185,12 +217,14 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param fieldMap
-     * @param pageNum
-     * @param pageSize
-     * @param orderBy
-     * @param sortBy
-     * @return
+     * 根据字段映射分页查询
+     *
+     * @param fieldMap 字段映射
+     * @param pageNum 页码
+     * @param pageSize 页大小
+     * @param orderBy 排序方式
+     * @param sortBy 排序字段
+     * @return 分页对象
      */
     @Override
     public Page<E> pageByFields(Map<String, Object> fieldMap, Integer pageNum, Integer pageSize, Sort.Direction orderBy, String... sortBy) {
@@ -202,8 +236,10 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param id
-     * @return
+     * 根据实体id查询实体文档
+     *
+     * @param id 实体id
+     * @return 实体文档
      */
     @Override
     public E getById(Serializable id) {
@@ -211,9 +247,11 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param field
-     * @param value
-     * @return
+     * 根据指定字段查询实体文档
+     *
+     * @param field 字段名
+     * @param value 字段值
+     * @return 实体文档
      */
     @Override
     public E getByField(String field, Object value) {
@@ -221,8 +259,10 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param fieldMap
-     * @return
+     * 根据指定字段映射查询实体文档
+     *
+     * @param fieldMap 字段映射
+     * @return 实体文档
      */
     @Override
     public E getByFields(Map<String, Object> fieldMap) {
@@ -232,8 +272,10 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param query
-     * @return
+     * 查询指定实体文档
+     *
+     * @param query 查询对象
+     * @return 实体文档
      */
     @Override
     public E getOne(Query query) {
@@ -241,8 +283,10 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param query
-     * @return
+     * 查询指定文档列表
+     *
+     * @param query 查询对象
+     * @return 实体文档列表
      */
     @Override
     public List<E> list(Query query) {
@@ -250,7 +294,9 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @return
+     * 查询所有文档
+     *
+     * @return 实体文档列表
      */
     @Override
     public List<E> list() {
@@ -258,8 +304,10 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param idList
-     * @return
+     * 根据指定实体id列表查询实体文档列表
+     *
+     * @param idList 实体id列表
+     * @return 实体文档列表
      */
     @Override
     public List<E> listByIds(Collection<? extends Serializable> idList) {
@@ -267,18 +315,22 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param columnMap
-     * @return
+     * 根据指定实体id列表查询实体文档列表
+     *
+     * @param fieldMap 实体映射
+     * @return 实体文档列表
      */
     @Override
-    public List<E> listByFields(Map<String, Object> columnMap) {
+    public List<E> listByFields(Map<String, Object> fieldMap) {
         Query query = new Query();
-        columnMap.forEach((field, value) -> query.addCriteria(Criteria.where(field).is(value)));
+        fieldMap.forEach((field, value) -> query.addCriteria(Criteria.where(field).is(value)));
         return this.getMongoTemplate().find(query, this.getEntityClass());
     }
 
     /**
-     * @return
+     * 计数
+     *
+     * @return 文档数
      */
     @Override
     public Long count() {
@@ -286,8 +338,10 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param query
-     * @return
+     * 查询计数
+     *
+     * @param query 查询对象
+     * @return 文档数
      */
     @Override
     public Long count(Query query) {
@@ -295,9 +349,9 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param field
-     * @param value
-     * @return
+     * @param field 字段名
+     * @param value 字段值
+     * @return 文档数
      */
     @Override
     public Long countByField(String field, Object value) {
@@ -305,8 +359,8 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param fieldMap
-     * @return
+     * @param fieldMap 字段映射
+     * @return 文档数
      */
     @Override
     public Long countByFields(Map<String, Object> fieldMap) {
@@ -316,8 +370,10 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param query
-     * @return
+     * 判断是否存在
+     *
+     * @param query 查询对象
+     * @return 是否存在
      */
     @Override
     public Boolean exists(Query query) {
@@ -325,8 +381,10 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param id
-     * @return
+     * 根据指定实体id判断是否存在
+     *
+     * @param id 实体id
+     * @return 是否存在
      */
     @Override
     public Boolean existsById(Serializable id) {
@@ -334,9 +392,9 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param field
-     * @param value
-     * @return
+     * @param field 字段名
+     * @param value 字段值
+     * @return 是否存在
      */
     @Override
     public Boolean existsByField(String field, Object value) {
@@ -344,8 +402,8 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * @param fieldMap
-     * @return
+     * @param fieldMap 字段映射
+     * @return 是否存在
      */
     @Override
     public Boolean existsByFields(Map<String, Object> fieldMap) {

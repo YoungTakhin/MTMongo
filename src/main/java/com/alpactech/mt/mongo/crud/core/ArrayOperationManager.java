@@ -5,7 +5,6 @@ import org.springframework.data.mongodb.core.query.Update;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
 
 public interface ArrayOperationManager<E> {
     E addToSet(Query query, String field, Object element);
