@@ -69,3 +69,10 @@ For further reference, please consider the following sections:
 - 新增：数组操作push、pushAll、pop方法
 - 新增：部分方法注释
 - 更新：更新Spring Data MongoDB到2.7.3
+
+## v1.1.3
+
+2022-10-03
+
+- 新增：部分update方法
+
