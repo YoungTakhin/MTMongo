@@ -220,6 +220,54 @@ public abstract class CrudManagerImpl<E> extends ViewManagerImpl<E> implements C
     }
 
     /**
+     * @param field
+     * @param value
+     * @param updateField
+     * @param updateValue
+     * @return
+     */
+    @Override
+    public E updateFieldByField(String field, Object value, String updateField, Object updateValue) {
+        return getMongoTemplate().findAndModify(getQueryByField(field, value),
+                Update.update(updateField, updateValue), FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param fieldMap
+     * @param updateField
+     * @param updateValue
+     * @return
+     */
+    @Override
+    public E updateFieldByFields(Map<String, Object> fieldMap, String updateField, Object updateValue) {
+        return getMongoTemplate().findAndModify(getQueryByFields(fieldMap),
+                Update.update(updateField, updateValue), FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param field
+     * @param value
+     * @param updateFieldMap
+     * @return
+     */
+    @Override
+    public E updateFieldsByField(String field, Object value, Map<String, Object> updateFieldMap) {
+        return getMongoTemplate().findAndModify(getQueryByField(field, value),
+                getUpdateByFields(updateFieldMap), FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param fieldMap
+     * @param updateFieldMap
+     * @return
+     */
+    @Override
+    public E updateFieldsByFields(Map<String, Object> fieldMap, Map<String, Object> updateFieldMap) {
+        return getMongoTemplate().findAndModify(getQueryByFields(fieldMap), getUpdateByFields(updateFieldMap),
+                FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
      * @param entity
      * @return
      */
