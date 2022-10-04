@@ -81,3 +81,9 @@ For further reference, please consider the following sections:
 2022-10-04
 
 - 更新：更新Spring Data MongoDB到2.7.4
+
+## v1.1.5
+
+2022-10-05
+
+- 新增：新增listByField方法

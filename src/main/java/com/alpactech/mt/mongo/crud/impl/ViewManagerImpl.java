@@ -315,9 +315,21 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     }
 
     /**
-     * 根据指定实体id列表查询实体文档列表
+     * 根据指定实体属性查询实体文档列表
      *
-     * @param fieldMap 实体映射
+     * @param field 实体属性
+     * @param value 实体属性值
+     * @return 实体文档列表
+     */
+    @Override
+    public List<E> listByField(String field, Object value) {
+        return this.getMongoTemplate().find(Query.query(Criteria.where(field).is(value)), this.getEntityClass());
+    }
+
+    /**
+     * 根据指定实体属性映射查询实体文档列表
+     *
+     * @param fieldMap 实体属性映射
      * @return 实体文档列表
      */
     @Override

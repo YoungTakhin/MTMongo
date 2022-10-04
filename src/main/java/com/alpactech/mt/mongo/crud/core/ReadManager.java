@@ -29,5 +29,7 @@ public interface ReadManager<E> extends PageManager<E>, JudgeAndCountManager<E> 
 
     List<E> listByIds(Collection<? extends Serializable> idList);
 
+    List<E> listByField(String field, Object value);
+
     List<E> listByFields(Map<String, Object> fieldMap);
 }

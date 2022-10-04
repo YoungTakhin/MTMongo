@@ -5,7 +5,7 @@
 
   <groupId>com.alpactech</groupId>
   <artifactId>mt-mongo</artifactId>
-  <version>1.1.4</version>
+  <version>1.1.5</version>
   <name>MTMongo</name>
   <url>https://github.com/YoungTakhin/MTMongo</url>
   <description>
