@@ -51,4 +51,12 @@ public interface UpdateManager<E> extends ArrayOperationManager<E> {
     E updateFieldsByField(String field, Object value, Map<String, Object> updateFieldMap);
 
     E updateFieldsByFields(Map<String, Object> fieldMap, Map<String, Object> updateFieldMap);
+
+    List<E> updateFieldBatchByField(String field, Object value, String updateField, Object updateValue);
+
+    List<E> updateFieldBatchByFields(Map<String, Object> fieldMap, String updateField, Object updateValue);
+
+    List<E> updateFieldsBatchByField(String field, Object value, Map<String, Object> updateFieldMap);
+
+    List<E> updateFieldsBatchByFields(Map<String, Object> fieldMap, Map<String, Object> updateFieldMap);
 }

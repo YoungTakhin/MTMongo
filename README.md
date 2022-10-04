@@ -76,3 +76,8 @@ For further reference, please consider the following sections:
 
 - 新增：部分update方法
 
+## v1.1.4
+
+2022-10-04
+
+- 更新：更新Spring Data MongoDB到2.7.4

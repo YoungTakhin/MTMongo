@@ -251,7 +251,7 @@ public abstract class CrudManagerImpl<E> extends ViewManagerImpl<E> implements C
      * @return
      */
     @Override
-    public E updateFieldsByField(String field, Object value, Map<String, Object> updateFieldMap) {
+    public E updateFieldsByField(String field, Object value, Map<String, ? super Object> updateFieldMap) {
         return getMongoTemplate().findAndModify(getQueryByField(field, value),
                 getUpdateByFields(updateFieldMap), FIND_AND_MODIFY_OPTIONS, getEntityClass());
     }
@@ -262,9 +262,53 @@ public abstract class CrudManagerImpl<E> extends ViewManagerImpl<E> implements C
      * @return
      */
     @Override
-    public E updateFieldsByFields(Map<String, Object> fieldMap, Map<String, Object> updateFieldMap) {
+    public E updateFieldsByFields(Map<String, ? super Object> fieldMap, Map<String, ? super Object> updateFieldMap) {
         return getMongoTemplate().findAndModify(getQueryByFields(fieldMap), getUpdateByFields(updateFieldMap),
                 FIND_AND_MODIFY_OPTIONS, getEntityClass());
+    }
+
+    /**
+     * @param field
+     * @param value
+     * @param updateField
+     * @param updateValue
+     * @return
+     */
+    @Override
+    public List<E> updateFieldBatchByField(String field, Object value, String updateField, Object updateValue) {
+        return null;
+    }
+
+    /**
+     * @param fieldMap
+     * @param updateField
+     * @param updateValue
+     * @return
+     */
+    @Override
+    public List<E> updateFieldBatchByFields(Map<String, ? super Object> fieldMap, String updateField, Object updateValue) {
+        return null;
+    }
+
+    /**
+     * @param field
+     * @param value
+     * @param updateFieldMap
+     * @return
+     */
+    @Override
+    public List<E> updateFieldsBatchByField(String field, Object value, Map<String, Object> updateFieldMap) {
+        return null;
+    }
+
+    /**
+     * @param fieldMap
+     * @param updateFieldMap
+     * @return
+     */
+    @Override
+    public List<E> updateFieldsBatchByFields(Map<String, Object> fieldMap, Map<String, Object> updateFieldMap) {
+        return null;
     }
 
     /**
