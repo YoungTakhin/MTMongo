@@ -84,6 +84,11 @@ For further reference, please consider the following sections:
 
 ## v1.1.5
 
-2022-10-05
+2023-06-05
 
+- 修复：部分page系列方法总页数不正确
 - 新增：新增listByField方法
+- 新增：新增listByCircle、listByBox、listByPolygon地理查询方法
+- **不兼容更新**：修改saveBatch参数数据类型
+- 更新：更新Spring Data MongoDB到3.1.0
+- 更新：更新Lombok到1.18.28

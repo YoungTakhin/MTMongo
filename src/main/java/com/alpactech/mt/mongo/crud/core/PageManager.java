@@ -1,5 +1,6 @@
 package com.alpactech.mt.mongo.crud.core;
 
+import com.alpactech.mt.mongo.crud.geo.GeoPageManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -8,7 +9,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import java.util.Collection;
 import java.util.Map;
 
-public interface PageManager<E> {
+public interface PageManager<E> extends GeoPageManager<E> {
     /*
     分页
      */

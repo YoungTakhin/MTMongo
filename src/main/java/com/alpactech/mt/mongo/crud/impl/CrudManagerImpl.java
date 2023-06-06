@@ -3,6 +3,7 @@ package com.alpactech.mt.mongo.crud.impl;
 import com.alpactech.mt.mongo.Manager;
 import com.alpactech.mt.mongo.crud.CrudManager;
 import com.mongodb.bulk.BulkWriteResult;
+import org.springframework.data.geo.*;
 import org.springframework.data.mongodb.BulkOperationException;
 import org.springframework.data.mongodb.core.BulkOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -764,5 +765,312 @@ public abstract class CrudManagerImpl<E> extends ViewManagerImpl<E> implements C
     @Override
     public void removeByIds(Collection<? extends Serializable> idList) {
         getMongoTemplate().remove(Query.query(Criteria.where("_id").in(idList)), getEntityClass());
+    }
+
+    /**
+     * @param field
+     * @param circle
+     * @return
+     */
+    @Override
+    public List<E> listByCircle(String field, Circle circle) {
+        return getMongoTemplate().find(Query.query(Criteria.where(field).withinSphere(circle)), getEntityClass());
+    }
+
+    /**
+     * @param fields
+     * @param circle
+     * @return
+     */
+    @Override
+    public List<E> listByCircle(Collection<String> fields, Circle circle) {
+        Query query = new Query();
+        fields.forEach(f -> query.addCriteria(Criteria.where(f).withinSphere(circle)));
+        return getMongoTemplate().find(query, getEntityClass());
+    }
+
+    /**
+     * @param field
+     * @param center
+     * @param radius
+     * @return
+     */
+    @Override
+    public List<E> listByCircle(String field, Point center, Distance radius) {
+        return getMongoTemplate().find(Query.query(Criteria.where(field).withinSphere(new Circle(center, radius))),
+                getEntityClass());
+    }
+
+    /**
+     * @param fields
+     * @param center
+     * @param radius
+     * @return
+     */
+    @Override
+    public List<E> listByCircle(Collection<String> fields, Point center, Distance radius) {
+        Query query = new Query();
+        Circle circle = new Circle(center, radius);
+        fields.forEach(f -> query.addCriteria(Criteria.where(f).withinSphere(circle)));
+        return getMongoTemplate().find(query, getEntityClass());
+    }
+
+    /**
+     * @param fieldMap
+     * @return
+     */
+    @Override
+    public List<E> listByCircle(Map<String, Circle> fieldMap) {
+        Query query = new Query();
+        fieldMap.forEach((f, c) -> query.addCriteria(Criteria.where(f).withinSphere(c)));
+        return getMongoTemplate().find(query, getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param field
+     * @param circle
+     * @return
+     */
+    @Override
+    public List<E> listByCircle(Query query, String field, Circle circle) {
+        return getMongoTemplate().find(query.addCriteria(Criteria.where(field).withinSphere(circle)), getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param fields
+     * @param circle
+     * @return
+     */
+    @Override
+    public List<E> listByCircle(Query query, Collection<String> fields, Circle circle) {
+        fields.forEach(f -> query.addCriteria(Criteria.where(f).withinSphere(circle)));
+        return getMongoTemplate().find(query, getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param field
+     * @param center
+     * @param radius
+     * @return
+     */
+    @Override
+    public List<E> listByCircle(Query query, String field, Point center, Distance radius) {
+        return getMongoTemplate().find(query.addCriteria(
+                Criteria.where(field).withinSphere(new Circle(center, radius))), getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param fields
+     * @param center
+     * @param radius
+     * @return
+     */
+    @Override
+    public List<E> listByCircle(Query query, Collection<String> fields, Point center, Distance radius) {
+        Circle circle = new Circle(center, radius);
+        fields.forEach(f -> query.addCriteria(Criteria.where(f).withinSphere(circle)));
+        return getMongoTemplate().find(query, getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param fieldMap
+     * @return
+     */
+    @Override
+    public List<E> listByCircle(Query query, Map<String, Circle> fieldMap) {
+        fieldMap.forEach((f, c) -> query.addCriteria(Criteria.where(f).withinSphere(c)));
+        return getMongoTemplate().find(query, getEntityClass());
+    }
+
+    /**
+     * @param field
+     * @param box
+     * @return
+     */
+    @Override
+    public List<E> listByBox(String field, Box box) {
+        return getMongoTemplate().find(Query.query(Criteria.where(field).within(box)), getEntityClass());
+    }
+
+    /**
+     * @param fields
+     * @param box
+     * @return
+     */
+    @Override
+    public List<E> listByBox(Collection<String> fields, Box box) {
+        Query query = new Query();
+        fields.forEach(f -> query.addCriteria(Criteria.where(f).within(box)));
+        return getMongoTemplate().find(query, getEntityClass());
+    }
+
+    /**
+     * @param field
+     * @param first
+     * @param second
+     * @return
+     */
+    @Override
+    public List<E> listByBox(String field, Point first, Point second) {
+        return getMongoTemplate().find(Query.query(Criteria.where(field).within(new Box(first, second))),
+                getEntityClass());
+    }
+
+    /**
+     * @param fields
+     * @param first
+     * @param second
+     * @return
+     */
+    @Override
+    public List<E> listByBox(Collection<String> fields, Point first, Point second) {
+        Query query = new Query();
+        Box box = new Box(first, second);
+        fields.forEach(f -> query.addCriteria(Criteria.where(f).within(box)));
+        return getMongoTemplate().find(query, getEntityClass());
+    }
+
+    /**
+     * @param fieldMap
+     * @return
+     */
+    @Override
+    public List<E> listByBox(Map<String, Box> fieldMap) {
+        Query query = new Query();
+        fieldMap.forEach((f, b) -> query.addCriteria(Criteria.where(f).within(b)));
+        return getMongoTemplate().find(query, getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param field
+     * @param box
+     * @return
+     */
+    @Override
+    public List<E> listByBox(Query query, String field, Box box) {
+        return getMongoTemplate().find(query.addCriteria(Criteria.where(field).within(box)), getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param fields
+     * @param box
+     * @return
+     */
+    @Override
+    public List<E> listByBox(Query query, Collection<String> fields, Box box) {
+        fields.forEach(f -> query.addCriteria(Criteria.where(f).within(box)));
+        return getMongoTemplate().find(query, getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param field
+     * @param first
+     * @param second
+     * @return
+     */
+    @Override
+    public List<E> listByBox(Query query, String field, Point first, Point second) {
+        return getMongoTemplate().find(query.addCriteria(Criteria.where(field).within(new Box(first, second))),
+                getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param fields
+     * @param first
+     * @param second
+     * @return
+     */
+    @Override
+    public List<E> listByBox(Query query, Collection<String> fields, Point first, Point second) {
+        Box box = new Box(first, second);
+        fields.forEach(f -> query.addCriteria(Criteria.where(f).within(box)));
+        return getMongoTemplate().find(query, getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param fieldMap
+     * @return
+     */
+    @Override
+    public List<E> listByBox(Query query, Map<String, Box> fieldMap) {
+        fieldMap.forEach((f, b) -> query.addCriteria(Criteria.where(f).within(b)));
+        return getMongoTemplate().find(query, getEntityClass());
+    }
+
+    /**
+     * @param field
+     * @param polygon
+     * @return
+     */
+    @Override
+    public List<E> listByPolygon(String field, Polygon polygon) {
+        return getMongoTemplate().find(Query.query(Criteria.where(field).within(polygon)), getEntityClass());
+    }
+
+    /**
+     * @param fields
+     * @param polygon
+     * @return
+     */
+    @Override
+    public List<E> listByPolygon(Collection<String> fields, Polygon polygon) {
+        Query query = new Query();
+        fields.forEach(f -> query.addCriteria(Criteria.where(f).within(polygon)));
+        return getMongoTemplate().find(query, getEntityClass());
+    }
+
+    /**
+     * @param fieldMap
+     * @return
+     */
+    @Override
+    public List<E> listByPolygon(Map<String, Polygon> fieldMap) {
+        Query query = new Query();
+        fieldMap.forEach((f, p) -> query.addCriteria(Criteria.where(f).within(p)));
+        return getMongoTemplate().find(query, getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param field
+     * @param polygon
+     * @return
+     */
+    @Override
+    public List<E> listByPolygon(Query query, String field, Polygon polygon) {
+        return getMongoTemplate().find(query.addCriteria(Criteria.where(field).within(polygon)), getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param fields
+     * @param polygon
+     * @return
+     */
+    @Override
+    public List<E> listByPolygon(Query query, Collection<String> fields, Polygon polygon) {
+        fields.forEach(f -> query.addCriteria(Criteria.where(f).within(polygon)));
+        return getMongoTemplate().find(query, getEntityClass());
+    }
+
+    /**
+     * @param query
+     * @param fieldMap
+     * @return
+     */
+    @Override
+    public List<E> listByPolygon(Query query, Map<String, Polygon> fieldMap) {
+        fieldMap.forEach((f, p) -> query.addCriteria(Criteria.where(f).within(p)));
+        return getMongoTemplate().find(query, getEntityClass());
     }
 }

@@ -33,8 +33,9 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     @Override
     public Page<E> page(Query query, Integer pageNum, Integer pageSize) {
         Pageable pageable = PageRequest.of(pageNum, pageSize);
+        long total = this.getMongoTemplate().count(query, this.getEntityClass());
         return new PageImpl<>(this.getMongoTemplate().find(query.with(pageable), this.getEntityClass()),
-                pageable, this.getMongoTemplate().count(query, this.getEntityClass()));
+                pageable, total);
     }
 
     /**
@@ -49,8 +50,9 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     @Override
     public Page<E> page(Query query, Integer pageNum, Integer pageSize, String... sortBy) {
         Pageable pageable = PageRequest.of(pageNum, pageSize, Sort.by(sortBy));
+        long total = this.getMongoTemplate().count(query, this.getEntityClass());
         return new PageImpl<>(this.getMongoTemplate().find(query.with(pageable), this.getEntityClass()),
-                pageable, this.getMongoTemplate().count(query, this.getEntityClass()));
+                pageable, total);
     }
 
     /**
@@ -82,8 +84,9 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     @Override
     public Page<E> page(Query query, Integer pageNum, Integer pageSize, Sort.Direction orderBy, String... sortBy) {
         Pageable pageable = PageRequest.of(pageNum, pageSize, Sort.by(orderBy, sortBy));
+        long total = this.getMongoTemplate().count(query, this.getEntityClass());
         return new PageImpl<>(this.getMongoTemplate().find(query.with(pageable), this.getEntityClass()),
-                pageable, this.getMongoTemplate().count(query, this.getEntityClass()));
+                pageable, total);
     }
 
     /**
@@ -140,8 +143,8 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     public Page<E> pageByField(String field, Object value, Integer pageNum, Integer pageSize) {
         Query query = Query.query(Criteria.where(field).is(value));
         Pageable pageable = PageRequest.of(pageNum, pageSize);
-        return new PageImpl<>(this.getMongoTemplate().find(query, this.getEntityClass()), pageable,
-                this.getMongoTemplate().count(query, this.getEntityClass()));
+        long total = this.getMongoTemplate().count(query, this.getEntityClass());
+        return new PageImpl<>(this.getMongoTemplate().find(query, this.getEntityClass()), pageable, total);
     }
 
     /**
@@ -158,8 +161,8 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     public Page<E> pageByField(String field, Object value, Integer pageNum, Integer pageSize, String... sortBy) {
         Query query = Query.query(Criteria.where(field).is(value));
         Pageable pageable = PageRequest.of(pageNum, pageSize, Sort.by(sortBy));
-        return new PageImpl<>(this.getMongoTemplate().find(query, this.getEntityClass()), pageable,
-                this.getMongoTemplate().count(query, this.getEntityClass()));
+        long total = this.getMongoTemplate().count(query, this.getEntityClass());
+        return new PageImpl<>(this.getMongoTemplate().find(query, this.getEntityClass()), pageable, total);
     }
 
     /**
@@ -177,8 +180,8 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
     public Page<E> pageByField(String field, Object value, Integer pageNum, Integer pageSize, Sort.Direction orderBy, String... sortBy) {
         Query query = Query.query(Criteria.where(field).is(value));
         Pageable pageable = PageRequest.of(pageNum, pageSize, Sort.by(orderBy, sortBy));
-        return new PageImpl<>(this.getMongoTemplate().find(query, this.getEntityClass()), pageable,
-                this.getMongoTemplate().count(query, this.getEntityClass()));
+        long total = this.getMongoTemplate().count(query, this.getEntityClass());
+        return new PageImpl<>(this.getMongoTemplate().find(query, this.getEntityClass()), pageable, total);
     }
 
     /**
@@ -194,8 +197,8 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
         Query query = new Query();
         fieldMap.forEach((field, value) ->  query.addCriteria(Criteria.where(field).is(value)));
         Pageable pageable = PageRequest.of(pageNum, pageSize);
-        return new PageImpl<>(this.getMongoTemplate().find(query, this.getEntityClass()), pageable,
-                this.getMongoTemplate().count(query, this.getEntityClass()));
+        long total = this.getMongoTemplate().count(query, this.getEntityClass());
+        return new PageImpl<>(this.getMongoTemplate().find(query, this.getEntityClass()), pageable, total);
     }
 
     /**
@@ -212,8 +215,8 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
         Query query = new Query();
         fieldMap.forEach((field, value) ->  query.addCriteria(Criteria.where(field).is(value)));
         Pageable pageable = PageRequest.of(pageNum, pageSize, Sort.by(sortBy));
-        return new PageImpl<>(this.getMongoTemplate().find(query, this.getEntityClass()), pageable,
-                this.getMongoTemplate().count(query, this.getEntityClass()));
+        long total = this.getMongoTemplate().count(query, this.getEntityClass());
+        return new PageImpl<>(this.getMongoTemplate().find(query, this.getEntityClass()), pageable, total);
     }
 
     /**
@@ -231,8 +234,8 @@ public abstract class ViewManagerImpl<E> extends AbstractMongoTemplateGetter<E> 
         Query query = new Query();
         fieldMap.forEach((field, value) ->  query.addCriteria(Criteria.where(field).is(value)));
         Pageable pageable = PageRequest.of(pageNum, pageSize, Sort.by(orderBy, sortBy));
-        return new PageImpl<>(this.getMongoTemplate().find(query, this.getEntityClass()), pageable,
-                this.getMongoTemplate().count(query, this.getEntityClass()));
+        long total = this.getMongoTemplate().count(query, this.getEntityClass());
+        return new PageImpl<>(this.getMongoTemplate().find(query, this.getEntityClass()), pageable, total);
     }
 
     /**
