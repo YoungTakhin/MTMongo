@@ -5,7 +5,7 @@
 
   <groupId>com.alpactech</groupId>
   <artifactId>mt-mongo</artifactId>
-  <version>1.1.5</version>
+  <version>1.1.6</version>
   <name>MTMongo</name>
   <url>https://github.com/YoungTakhin/MTMongo</url>
   <description>
@@ -62,14 +62,15 @@
 
   <distributionManagement>
     <repository>
-      <id>ossrn</id>
+      <id>ossrh</id>
       <name>Release</name>
       <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
+
     <snapshotRepository>
-      <id>ossrn</id>
+      <id>ossrh</id>
       <name>SNAPSHOTS</name>
-      <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
 
@@ -78,7 +79,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
+        <version>3.11.0</version>
         <configuration>
           <encoding>UTF-8</encoding>
           <source>17</source>
@@ -89,7 +90,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>3.2.1</version>
+        <version>3.3.0</version>
         <configuration>
           <attach>true</attach>
         </configuration>
@@ -106,13 +107,13 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>3.7.1</version>
+        <version>3.12.1</version>
       </plugin>
       <!-- Javadoc -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.5.0</version>
         <configuration>
           <encoding>UTF-8</encoding>
           <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>

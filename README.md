@@ -92,3 +92,10 @@ For further reference, please consider the following sections:
 - **不兼容更新**：修改saveBatch参数数据类型
 - 更新：更新Spring Data MongoDB到3.1.0
 - 更新：更新Lombok到1.18.28
+
+
+## v1.1.6
+
+2023-06-05
+
+- 修复：暂未地理坐标page查询方法
